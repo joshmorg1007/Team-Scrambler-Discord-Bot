@@ -1,1 +1,1 @@
-worker node main.py
+worker node python main.py
