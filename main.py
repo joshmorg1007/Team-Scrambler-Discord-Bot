@@ -48,7 +48,7 @@ async def scramble(ctx, *args):
 
     for member in team:
         team_string += member + "\n"
-    number += 1
+    team_number += 1
     team_string += "\n\n"
     await ctx.send(team_string)
 
