@@ -1,5 +1,6 @@
 import discord
 import random
+import sys
 from discord.ext import commands
 import os
 
@@ -53,3 +54,4 @@ async def scramble(ctx, *args):
     await ctx.send(team_string)
 
 bot.run(os.getenv("TOKEN"))
+sys.stdout.flush()
