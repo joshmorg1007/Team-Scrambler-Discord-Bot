@@ -11,6 +11,7 @@ async def on_ready():
   print("we have logged in as {0.user}".format(bot))
 
 @bot.command()
+#Bot Usage !scramble [num of teams] player1 player2 ect.
 async def scramble(ctx, *args):
 
   if int(args[0]) > 10:
