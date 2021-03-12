@@ -41,9 +41,9 @@ async def scramble(ctx, *args):
       temp_team.append(players.pop(random.randrange(0, len(players))))
     teams.append(temp_team)
 
-  number = 1
+  team_number = 1
   for team in teams:
-    team_string = "**Team** " + str(number) + "\n"
+    team_string = "**Team** " + str(team_number) + "\n"
 
     for member in team:
       team_string += member + "\n"
