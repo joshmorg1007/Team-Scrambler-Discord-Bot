@@ -57,6 +57,7 @@ async def test(ctx, *args):
     channel = discord.utils.get(ctx.guild.channels, name=args[0])
     members = channel.members
     for member in members:
+        member.move_to(args[0])
         await ctx.send(member.name)
     print("Testing")
 
