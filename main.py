@@ -123,6 +123,31 @@ async def voiceScramble(ctx, *args):
             await member.move_to(team_channel_list.pop(0))
         number += 1
 
+@bot.command()
+async def summon(ctx, *args):
+    calling_member = ctx.author
+
+    if calling_member.id == "127986883819995136":
+        await ctx.send("Nice Try Rob")
+
+    channel_list = []
+    for c in ctx.guild.channels:
+        if c.type == ChannelType.voice:
+            channel_list.append(c)
+
+    calling_channel = None
+    for channel in channel_list:
+        for member in channel.members:
+            if (calling_member.id == member.id):
+                calling_channel = channel
+
+    if calling_channel is None:
+        await ctx.send("You must be in a voice channel to call this command")
+        return
+
+    for channel in channel_list:
+        for member in channel.members:
+            await member.move_to(calling_channel)
 
 @bot.command()
 async def test(ctx, *args):
@@ -141,5 +166,5 @@ async def test(ctx, *args):
 
 token = os.getenv("TOKEN")
 bot.run(token)
-#bot.run("Insert Token when testing")
+#bot.run("Insert Token Here When Testing")
 sys.stdout.flush()
