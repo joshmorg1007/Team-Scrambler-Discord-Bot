@@ -1,6 +1,7 @@
 import discord
 import random
 import sys
+import os
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix="!")
@@ -59,7 +60,6 @@ async def test(ctx, *args):
         await ctx.send(member.name)
     print("Testing")
 
-token_file = open("token.txt", "r")
-token = token_file.readline()
+token = os.getenv("TOKEN")
 bot.run(token)
 sys.stdout.flush()
