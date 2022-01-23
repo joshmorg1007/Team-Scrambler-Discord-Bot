@@ -11,7 +11,6 @@ bot = commands.Bot(command_prefix="!")
 async def on_ready():
     print("we have logged in as {0.user}.format(client)")
 
-
 @bot.command()
 async def scramble(ctx, *args):
 
@@ -55,10 +54,16 @@ async def scramble(ctx, *args):
 @bot.command()
 async def test(ctx, *args):
     channel = discord.utils.get(ctx.guild.channels, name=args[0])
-    members = channel.members
+    channel2 = discord.utils.get(ctx.guild.channels, name=args[1])
+    members = []
+    for member in channel.members:
+        members.append(member)
+    print(members)
+    print(channel.id)
+    print(channel2.id)
     for member in members:
-        member.move_to(args[0])
-        await ctx.send(member.name)
+        await member.move_to(channel2)
+        return
     print("Testing")
 
 token = os.getenv("TOKEN")
