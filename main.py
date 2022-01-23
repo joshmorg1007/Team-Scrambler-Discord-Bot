@@ -71,6 +71,9 @@ async def voiceScramble(ctx, *args):
     player_list = []
     channel_list = []
 
+    if calling_member.id == "127986883819995136":
+        await ctx.send("Nice Try Rob")
+
     for c in ctx.guild.channels:
         if c.type == ChannelType.voice:
             channel_list.append(c)
