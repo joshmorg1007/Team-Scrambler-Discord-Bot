@@ -119,8 +119,9 @@ async def voiceScramble(ctx, *args):
 
     number = 0
     for team in teams:
+        this_teams_channel = team_channel_list.pop(0)
         for member in team:
-            await member.move_to(team_channel_list.pop(0))
+            await member.move_to(this_teams_channel)
         number += 1
 
 @bot.command()
