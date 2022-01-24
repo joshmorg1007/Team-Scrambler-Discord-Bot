@@ -124,6 +124,7 @@ async def voiceScramble(ctx, *args):
             await member.move_to(this_teams_channel)
         number += 1
 
+
 @bot.command()
 async def summon(ctx, *args):
     calling_member = ctx.author
@@ -149,6 +150,7 @@ async def summon(ctx, *args):
     for channel in channel_list:
         for member in channel.members:
             await member.move_to(calling_channel)
+
 
 @bot.command()
 async def test(ctx, *args):
