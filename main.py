@@ -126,7 +126,7 @@ async def voiceScramble(ctx, *args):
 
 
 @bot.command()
-async def summon(ctx, *args):
+async def recall(ctx, *args):
     calling_member = ctx.author
 
     if calling_member.id == "127986883819995136":
@@ -160,8 +160,6 @@ async def test(ctx, *args):
     members.append(calling_member)
     for member in channel.members:
         members.append(member)
-    print(members)
-    print(channel.id)
     for member in members:
         await member.move_to(channel)
         return
