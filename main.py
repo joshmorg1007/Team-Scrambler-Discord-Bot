@@ -71,9 +71,6 @@ async def voiceScramble(ctx, *args):
     player_list = []
     channel_list = []
 
-    if calling_member.id == "127986883819995136":
-        await ctx.send("Nice Try Rob")
-
     for c in ctx.guild.channels:
         if c.type == ChannelType.voice:
             channel_list.append(c)
@@ -93,12 +90,11 @@ async def voiceScramble(ctx, *args):
                 ctx.guild.channels, name=args[team_count-1])
         team_channel_list.append(current)
 
-        try:
-            print(current.id)
-        except:
+        if not current.id:
             print(
                 "Could not find voice channel with name '{args[team_count]}'")
             await ctx.send("Could not find voice channel with name '" + args[team_count-1] + "'")
+            return
 
     for member in calling_channel.members:
         player_list.append(member)
@@ -128,9 +124,6 @@ async def voiceScramble(ctx, *args):
 @bot.command()
 async def recall(ctx, *args):
     calling_member = ctx.author
-
-    if calling_member.id == "127986883819995136":
-        await ctx.send("Nice Try Rob")
 
     channel_list = []
     for c in ctx.guild.channels:
