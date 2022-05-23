@@ -34,9 +34,7 @@ async def scramble(ctx, *args):
         await ctx.send("Not able to make teams with even numbers")
         return
 
-    player_in_team = len(players) / int(number_of_teams)
-
-    teams = divide_players_into_teams(number_of_teams, player_in_team)
+    teams = divide_players_into_teams(number_of_teams, players)
 
     number = 1
     for team in teams:
@@ -131,7 +129,7 @@ async def recall(ctx, *args):
 
 
 def divide_players_into_teams(num_of_teams, list_of_players):
-    player_in_team = len(list_of_players) / len(num_of_teams)
+    player_in_team = len(list_of_players) / num_of_teams
     teams = list()
     for i in range(0, int(num_of_teams)):
         temp_team = list()
