@@ -36,12 +36,7 @@ async def scramble(ctx, *args):
 
     player_in_team = len(players) / int(number_of_teams)
 
-    teams = list()
-    for i in range(0, int(number_of_teams)):
-        temp_team = list()
-        for x in range(0, int(player_in_team)):
-            temp_team.append(players.pop(random.randrange(0, len(players))))
-        teams.append(temp_team)
+    teams = divide_players_into_teams(number_of_teams, player_in_team)
 
     number = 1
     for team in teams:
@@ -103,22 +98,12 @@ async def voiceScramble(ctx, *args):
         await ctx.send("Not able to make teams with even numbers")
         return
 
-    player_in_team = len(player_list) / int(len(args))
+    teams = divide_players_into_teams(team_count, player_list)
 
-    teams = list()
-    for i in range(0, int(team_count)):
-        temp_team = list()
-        for x in range(0, int(player_in_team)):
-            temp_team.append(player_list.pop(
-                random.randrange(0, len(player_list))))
-        teams.append(temp_team)
-
-    number = 0
     for team in teams:
         this_teams_channel = team_channel_list.pop(0)
         for member in team:
             await member.move_to(this_teams_channel)
-        number += 1
 
 
 @bot.command()
@@ -145,18 +130,17 @@ async def recall(ctx, *args):
             await member.move_to(calling_channel)
 
 
-@bot.command()
-async def test(ctx, *args):
-    channel = discord.utils.get(ctx.guild.channels, name=args[0])
-    calling_member = ctx.author
-    members = []
-    members.append(calling_member)
-    for member in channel.members:
-        members.append(member)
-    for member in members:
-        await member.move_to(channel)
-        return
-    print("Testing")
+def divide_players_into_teams(num_of_teams, list_of_players):
+    player_in_team = len(list_of_players) / len(num_of_teams)
+    teams = list()
+    for i in range(0, int(num_of_teams)):
+        temp_team = list()
+        for x in range(0, int(player_in_team)):
+            temp_team.append(list_of_players.pop(
+                random.randrange(0, len(list_of_players))))
+        teams.append(temp_team)
+    return teams
+
 
 token = os.getenv("TOKEN")
 bot.run(token)
