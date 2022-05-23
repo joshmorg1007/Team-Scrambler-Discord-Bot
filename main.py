@@ -24,7 +24,7 @@ async def scramble(ctx, *args):
         await ctx.send("No more than 100 players, ask Rob why")
         return
 
-    number_of_teams = args[0]
+    number_of_teams = int(args[0])
     players = list()
 
     for i in range(1, len(args)):
