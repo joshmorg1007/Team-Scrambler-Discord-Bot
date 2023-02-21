@@ -12,6 +12,12 @@ bot = commands.Bot(command_prefix="!")
 async def on_ready():
     print("we have logged in as {0.user}.format(client)")
 
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, commands.errors.MissingRole):
+        await ctx.send("You do not have the ScramblerEnjoyers role")
+        return
+
 
 @bot.command()
 async def scramble(ctx, *args):
@@ -47,6 +53,7 @@ async def scramble(ctx, *args):
 
 
 @bot.command()
+@commands.has_role('ScramblerEnjoyers')
 async def voiceScramble(ctx, *args):
     if int(len(args)) >= 10:
         await ctx.send("No more than 10 teams, ask Rob why")
@@ -105,6 +112,7 @@ async def voiceScramble(ctx, *args):
 
 
 @bot.command()
+@commands.has_role('ScramblerEnjoyers')
 async def recall(ctx, *args):
     calling_member = ctx.author
 
@@ -142,5 +150,5 @@ def divide_players_into_teams(num_of_teams, list_of_players):
 
 token = os.getenv("TOKEN")
 bot.run(token)
-#bot.run("Insert Token Here When Testing")
+#bot.run("Enter Token Here when testing")
 sys.stdout.flush()
